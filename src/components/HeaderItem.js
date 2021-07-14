@@ -1,4 +1,4 @@
-import './headerItem.css';
+import '../css/headerItem.css';
 import { Avatar } from '@material-ui/core';
 const HeaderItem = ({ avatar,title, Icon}) => {
     return (

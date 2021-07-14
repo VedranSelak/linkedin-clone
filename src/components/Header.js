@@ -1,5 +1,5 @@
 import React from 'react';
-import './header.css';
+import '../css/header.css';
 import SearchIcon from '@material-ui/icons/Search';
 import HeaderItem from './HeaderItem';
 import HomeIcon from '@material-ui/icons/Home';
