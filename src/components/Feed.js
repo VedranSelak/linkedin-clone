@@ -1,6 +1,8 @@
 import '../css/feed.css';
-import {useState} from 'react'
+import {useState,useEffect} from 'react'
+import { db } from '../firebase';
 import Post from './Post';
+import firebase from 'firebase';
 import CreateIcon from '@material-ui/icons/Create';
 import ImageIcon from '@material-ui/icons/Image';
 import InputOption from './InputOption';
@@ -9,12 +11,33 @@ import EventNoteIcon from '@material-ui/icons/EventNote';
 import CalendarViewDayIcon from '@material-ui/icons/CalendarViewDay';
 
 const Feed = () => {
-
+    const [input, setInput] = useState('');
     const [posts, setPosts] = useState([]);
 
     const sendPost = (e) => {
        e.preventDefault();
+
+       db.collection('posts').add({
+           name: 'Vedran Selak',
+           description: 'This is a test',
+           message: input,
+           photoUrl: '',
+           timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+       });
+
+       setInput('');
     };
+
+    useEffect(() => {
+        db.collection('posts').orderBy('timestamp', 'desc').onSnapshot(snapshot => {
+            setPosts(snapshot.docs.map(doc => (
+                {
+                    id: doc.id,
+                    data: doc.data(),
+                }
+            )))
+        });
+    }, []);
 
     return (
         <div className='feed'>
@@ -22,7 +45,7 @@ const Feed = () => {
                 <div className="feed-input">
                     <CreateIcon />
                     <form>
-                        <input type="text" />
+                        <input value={input} onChange={(e) => setInput(e.target.value)} type="text" />
                         <button type='submit' onClick={sendPost}>Send</button>
                     </form>
                 </div>
@@ -34,11 +57,9 @@ const Feed = () => {
                 </div>
             </div>
 
-            {posts.map((post) => (
-                <Post />
+            {posts.map(({id, data: { name, description, message, photoUrl }}) => (
+                <Post key={id} name={name} description={description} message={message} photoUrl={photoUrl} />
             ))}
-
-            <Post name='Vedran Selak' description='This is a test' message='Does it work' />
         </div>
     )
 }
