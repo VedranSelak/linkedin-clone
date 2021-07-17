@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { login } from '../features/userSlice';
 import { auth } from '../firebase.js';
+import { SettingsInputAntennaTwoTone } from '@material-ui/icons';
 
 const Login = () => {
     const [name, setName] = useState('');
@@ -19,6 +20,15 @@ const Login = () => {
     const doLogin = (e) => {
         e.preventDefault();
         
+        auth.signInWithEmailAndPassword(email, password)
+        .then(userAuth => {
+            dispatch(login({
+                email: userAuth.user.email,
+                uid: userAuth.user.uid,
+                displayName: userAuth.user.displayName,
+                photoURL: userAuth.user.photoURL,
+            }))
+        }).catch((error) => setAlert(true));
     };
 
     const doRegister = (e) => {
