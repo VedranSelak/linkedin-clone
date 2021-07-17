@@ -11,6 +11,7 @@ import SubscriptionsIcon from '@material-ui/icons/Subscriptions';
 import EventNoteIcon from '@material-ui/icons/EventNote';
 import CalendarViewDayIcon from '@material-ui/icons/CalendarViewDay';
 import { selectUser } from '../features/userSlice';
+import FlipMove from 'react-flip-move';
 
 const Feed = () => {
     const [input, setInput] = useState('');
@@ -60,10 +61,11 @@ const Feed = () => {
                     <InputOption Icon={CalendarViewDayIcon} title='Write article' color='#7FC15E' />
                 </div>
             </div>
-
+            <FlipMove>
             {posts.map(({id, data: { name, description, message, photoUrl }}) => (
                 <Post key={id} name={name} description={description} message={message} photoUrl={photoUrl} />
             ))}
+            </FlipMove>
         </div>
     )
 }

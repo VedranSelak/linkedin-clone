@@ -34,6 +34,7 @@ function App() {
      {!user ? <Login /> : <div className="app-body">
                             <SideBar />
                             <Feed />
+                            
                           </div>}
     </div>
   );
