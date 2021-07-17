@@ -1,5 +1,6 @@
 import '../css/feed.css';
 import {useState,useEffect} from 'react'
+import {useSelector} from 'react-redux'
 import { db } from '../firebase';
 import Post from './Post';
 import firebase from 'firebase';
@@ -9,19 +10,22 @@ import InputOption from './InputOption';
 import SubscriptionsIcon from '@material-ui/icons/Subscriptions';
 import EventNoteIcon from '@material-ui/icons/EventNote';
 import CalendarViewDayIcon from '@material-ui/icons/CalendarViewDay';
+import { selectUser } from '../features/userSlice';
 
 const Feed = () => {
     const [input, setInput] = useState('');
     const [posts, setPosts] = useState([]);
 
+    const user = useSelector(selectUser);
+
     const sendPost = (e) => {
        e.preventDefault();
 
        db.collection('posts').add({
-           name: 'Vedran Selak',
-           description: 'This is a test',
+           name: user.displayName,
+           description: user.email,
            message: input,
-           photoUrl: '',
+           photoUrl: user.photoURL || '',
            timestamp: firebase.firestore.FieldValue.serverTimestamp(),
        });
 

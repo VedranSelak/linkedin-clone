@@ -11,6 +11,7 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import { auth } from '../firebase';
 
 const Header = () => {
+
     const dispatch = useDispatch();
     const doLogout = () => {
         dispatch(logout());
@@ -31,7 +32,7 @@ const Header = () => {
                 <HeaderItem Icon={WorkIcon} title='Jobs' />
                 <HeaderItem Icon={MessageIcon} title='Messaging'/>
                 <HeaderItem Icon={NotificationsIcon} title='Notifications'/>
-                <HeaderItem avatar='./myPhoto.jpg' title='Me' onClick={doLogout}/>
+                <HeaderItem avatar={true} title='Me' onClick={doLogout}/>
             </div>
         </div>
     )
