@@ -3,6 +3,7 @@ import Header from './components/Header';
 import SideBar from './components/SideBar';
 import Feed from './components/Feed';
 import Login from './components/Login';
+import RightBar from './components/RightBar';
 import { selectUser } from './features/userSlice';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
@@ -34,7 +35,7 @@ function App() {
      {!user ? <Login /> : <div className="app-body">
                             <SideBar />
                             <Feed />
-                            
+                            <RightBar />
                           </div>}
     </div>
   );

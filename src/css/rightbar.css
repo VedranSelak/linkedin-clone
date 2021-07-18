@@ -1,0 +1,54 @@
+.right-bar {
+    flex: 0.2;
+    position: sticky;
+    top: 80px;
+    background-color: white;
+    border-radius: 10px;
+    border: 1px solid lightgray;
+    height: fit-content;
+    padding-bottom: 10px;
+}
+
+.right-bar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.right-bar-header h2 {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.right-bar-article {
+    display: flex;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.right-bar-article:hover {
+    background-color: whitesmoke;
+}
+
+.right-bar-article-left {
+    color: #0177b7;
+    margin-right: 5px;
+}
+
+.right-bar-article-left .MuiSvgIcon-root {
+    font-size: 15px;
+}
+
+.right-bar-article-right {
+    flex:1;
+}
+
+.right-bar-article-right h4 {
+    font-size: 13px;
+}
+
+.right-bar-article-right p {
+    font-size: 12px;
+    color: grey;
+}
